@@ -1,12 +1,12 @@
 const sequelizeModel = require('../db')
 const { DataTypes } = require('sequelize')
 
-const User = sequelizeModel.define('user', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    email: { type: DataTypes.STRING, unique: true},
-    password: { type: DataTypes.STRING},
-    role: { type: DataTypes.STRING, dataValue: "USER" },
-})
+const User = sequelizeModel.define("user", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  email: { type: DataTypes.STRING, unique: true },
+  password: { type: DataTypes.STRING },
+  role: { type: DataTypes.STRING, defaultValue: "USER" },
+});
 
 const Basket = sequelizeModel.define('basket', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -71,7 +71,7 @@ Raiting.belongsTo(Device)
 Device.hasMany(BasketDevice)
 BasketDevice.belongsTo(Device)
 
-Device.hasMany(DeviceInfo)
+Device.hasMany(DeviceInfo, {as: 'info'})
 DeviceInfo.belongsTo(Device)
 
 Type.belongsToMany(Brand , { through: TypeBrand})
