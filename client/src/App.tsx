@@ -1,10 +1,15 @@
 import * as React from "react"
+import {BrowserRouter as Router} from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux"
 
 import { Article } from "./components/Article"
 import { AddArticle } from "./components/AddArticle"
 import { addArticle, removeArticle } from "./store/actionCreator"
 import { Dispatch } from "redux"
+import AppRouter from "./components/AppRouter";
+import NavBar from "./components/NavBar/NavBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App: React.FC = () => {
   const articles: readonly IArticle[] = useSelector(
@@ -20,10 +25,12 @@ const App: React.FC = () => {
   )
 
   return (
-    <main>
-      <h1>Pern</h1>
-      <hr />
-      <h1>My Articles</h1>
+    <>
+    <Router>
+      <NavBar />
+      <AppRouter />
+    </Router>
+      {/* <h1>My Articles</h1>
       <AddArticle saveArticle={saveArticle} />
       {articles.map((article: IArticle) => (
         <Article
@@ -31,8 +38,8 @@ const App: React.FC = () => {
           article={article}
           removeArticle={removeArticle}
         />
-      ))}
-    </main>
+      ))} */}
+    </>
   )
 }
 
