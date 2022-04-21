@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import ModalWindowCreateBrand from '../components/ModalWindows/ModalWindowCreateBrand'
 import ModalWindowCreateDevice from '../components/ModalWindows/ModalWindowCreateDevice'
@@ -9,7 +9,6 @@ const Admin = () => {
   const [modalWindowCreateDeviceVisible, setModalWindowCreateDeviceVisible] = useState(false)
   const [modalWindowCreateTypeVisible, setModalWindowCreateTypeVisible] = useState(false)
 
-
   return (
     <div>
       <Button variant={"outline-dark"} className="mt-2" onClick={() => setModalWindowCreateBrandVisible(true)}>Добавить Брэнд</Button>
@@ -19,7 +18,6 @@ const Admin = () => {
       <ModalWindowCreateBrand show={modalWindowCreateBrandVisible} onHide={() => {setModalWindowCreateBrandVisible(false)}}/>
       <ModalWindowCreateDevice show={modalWindowCreateDeviceVisible} onHide={() => {setModalWindowCreateDeviceVisible(false)}}/>
       <ModalWindowCreateType show={modalWindowCreateTypeVisible} onHide={() => {setModalWindowCreateTypeVisible(false)}}/>
-
     </div>
   )
 }
