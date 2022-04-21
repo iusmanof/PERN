@@ -1,8 +1,9 @@
 import {Routes, Route, Navigate} from "react-router-dom";
-import { authRoutes, publicRoutes } from "../routes";
+import { authRoutes, publicRoutes } from "../../routes";
+import { useTypedSelector } from "../../store/hooks/TypedSelector";
 
 const AppRouter = () => {
-  const isAuth = false
+  const {isAuth} = useTypedSelector(state => state.auth)
   return (
     <Routes>
         {isAuth && authRoutes.map(({path, Component}) =>{

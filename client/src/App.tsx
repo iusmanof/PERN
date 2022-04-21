@@ -1,45 +1,17 @@
 import * as React from "react"
 import {BrowserRouter as Router} from "react-router-dom";
-import { useSelector, shallowEqual, useDispatch } from "react-redux"
 
-import { Article } from "./components/Article"
-import { AddArticle } from "./components/AddArticle"
-import { addArticle, removeArticle } from "./store/actionCreator"
-import { Dispatch } from "redux"
-import AppRouter from "./components/AppRouter";
+import AppRouter from "./components/AppRouter/AppRouter";
 import NavBar from "./components/NavBar/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App: React.FC = () => {
-  const articles: readonly IArticle[] = useSelector(
-    (state: ArticleState) => state.articles,
-    shallowEqual
-  )
-
-  const dispatch: Dispatch<any> = useDispatch()
-
-  const saveArticle = React.useCallback(
-    (article: IArticle) => dispatch(addArticle(article)),
-    [dispatch]
-  )
-
   return (
-    <>
     <Router>
       <NavBar />
       <AppRouter />
     </Router>
-      {/* <h1>My Articles</h1>
-      <AddArticle saveArticle={saveArticle} />
-      {articles.map((article: IArticle) => (
-        <Article
-          key={article.id}
-          article={article}
-          removeArticle={removeArticle}
-        />
-      ))} */}
-    </>
   )
 }
 
