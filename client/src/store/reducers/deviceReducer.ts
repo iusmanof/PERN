@@ -3,8 +3,8 @@ import { DeviceAction, DeviceActionTypes, DeviceState } from "../types/device";
 
 const initialState: DeviceState = {
     types: [
-        {id: 1, name: "Холодильник"},
-        {id: 2, name: "Смартфоны"}
+        // {id: 1, name: "Холодильник"},
+        // {id: 2, name: "Смартфоны"}
     ],
     brands: [
         {id: 1, name: "Samsung"},
@@ -27,6 +27,8 @@ export const deviceReducer = (state = initialState, action: DeviceAction): Devic
           return { ...state, isSelectedTypeId: action.isSelectedTypeId }
         case DeviceActionTypes.CHANGE_SELECTED_BRAND:
           return { ...state, isSelectedBrandsId: action.isSelectedBrandsId }
+         case DeviceActionTypes.SET_TYPE:
+          return { ...state, types: action.payload}
         default:
           return state;
     }

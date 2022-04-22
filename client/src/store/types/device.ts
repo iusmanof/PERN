@@ -17,7 +17,7 @@ export interface IDevices{
 }
 
 export interface DeviceState {
-    types: Array<ITypes>,
+    types: Array<ITypes> | ITypes[],
     brands: Array<IBrands>
     devices: Array<IDevices>
     isSelectedTypeId: number
@@ -26,7 +26,8 @@ export interface DeviceState {
 
 export enum DeviceActionTypes {
     CHANGE_SELECTED_TYPE = 'CHANGE_SELECTED_TYPE',
-    CHANGE_SELECTED_BRAND = 'CHANGE_SELECTED_BRAND'
+    CHANGE_SELECTED_BRAND = 'CHANGE_SELECTED_BRAND',
+    SET_TYPE = 'SET_TYPE'
 }
 
 interface SetSelectedTypesAction {
@@ -39,5 +40,10 @@ interface SetSelectedBrandsAction {
     isSelectedBrandsId: number
 }
 
+interface SetType {
+    type: DeviceActionTypes.SET_TYPE
+    payload: Array<ITypes>
+}
 
-export type DeviceAction = SetSelectedTypesAction | SetSelectedBrandsAction
+
+export type DeviceAction = SetSelectedTypesAction | SetSelectedBrandsAction | SetType

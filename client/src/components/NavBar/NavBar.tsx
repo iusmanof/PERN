@@ -9,7 +9,13 @@ const NavBar = () => {
   const { userAuth, adminAuth} = useActions()
   const { isAuth } = useTypedSelector(state => state.auth)
   const history = useNavigate() 
-  
+  const { setIsAuth, setUser } = useActions()
+
+  const logOut = () => {
+        setUser({})
+        setIsAuth(false)
+  }
+
   return (
    <Navbar bg="dark" variant="dark">
     <Container>
@@ -17,11 +23,11 @@ const NavBar = () => {
     {isAuth ?
       <Nav className="ml-auto">
         <Button onClick={() => history(ADMIN_ROUTE)}>Админ панель</Button>
-        <Button onClick={() => history(LOGIN_ROUTE)}>Войти</Button>
+        <Button onClick={() => logOut()}>Выйти</Button>
       </Nav>
       :
       <Nav className="ml-auto">
-        <Button onClick={adminAuth}>Авторизация</Button>
+        <Button onClick={() => history(LOGIN_ROUTE)}>Авторизация</Button>
       </Nav>
     }
     </Container>
