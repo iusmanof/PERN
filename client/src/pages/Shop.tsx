@@ -3,29 +3,32 @@ import { Col, Container, Row } from 'react-bootstrap'
 import BrandBar from '../components/BrandBar/BrandBar'
 import DeviceList from '../components/DeviceList/DeviceList'
 import LeftBar from '../components/LeftBar/LeftBar'
+import Pages from '../components/Pagination/Pages'
 import { fetchBrands, fetchDevices, fetchTypes } from '../http/deviceAPI'
 import { useActions } from '../store/hooks/authAction'
 import { useTypedSelector } from '../store/hooks/TypedSelector'
 
 const Shop = () => {
-  const { types, devices, brands } = useTypedSelector(state => state.device)
-  const { setType } = useActions()
-  
+  const { devices, limit, page, totalCount, isSelectedTypeId,isSelectedBrandsId } = useTypedSelector(state => state.device)
+  const { setType, setBrand, setDevice, setTotalCount } = useActions()
+    
   useEffect(() => {
         fetchTypes().then(data => setType(data))
-        // fetchBrands().then(data => device.setBrands(data))
-        // fetchDevices(null, null, 1, 2).then(data => {
-        //     device.setDevices(data.rows)
-        //     device.setTotalCount(data.count)
-        // })
+        fetchBrands().then(data => setBrand(data))
+        fetchDevices(null, null, page, limit).then(data => {
+            setDevice(data.rows)
+            setTotalCount(data.count)
+        })
     }, [])
 
-    // useEffect(() => {
-    //     fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 2).then(data => {
-    //         device.setDevices(data.rows)
-    //         device.setTotalCount(data.count)
-    //     })
-    // }, [device.page, device.selectedType, device.selectedBrand,])
+
+    useEffect(() => {
+        fetchDevices(isSelectedTypeId , isSelectedBrandsId, page, 2).then(data => {
+          // console.log(data)
+            setDevice(data)
+            // setTotalCount(data.count)
+        })
+    }, [page])
     
   return (
     <div>
@@ -37,6 +40,7 @@ const Shop = () => {
             <Col md={9}>
               <BrandBar />
               <DeviceList />
+              <Pages />
             </Col>
         </Row>
       </Container>

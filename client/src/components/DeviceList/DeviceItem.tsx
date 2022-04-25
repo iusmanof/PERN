@@ -10,7 +10,7 @@ const DeviceItem: FC<IDeviceProps> = ({device}) => {
   return (
     <Col md={3}>
         <Card style={{ width: 200, cursor: 'pointer'}} onClick = {() => history(DEVICE_ROUTE  + '/' + device.id)} >
-            <Image width={150} height={150} src={device.img}/>
+            <Image width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}/>
             <div className='d-flex justify-content-between aligh-items-center'>
                 <div>{device.name}</div>
                 <div>Price ($):{device.price}</div>

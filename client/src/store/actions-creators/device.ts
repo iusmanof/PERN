@@ -1,7 +1,6 @@
 import { Dispatch } from 'react';
-import axios from 'axios';
 
-import { DeviceAction, DeviceActionTypes, ITypes } from './../types/device';
+import { DeviceAction, DeviceActionTypes, ITypes, IBrands, IDevices } from './../types/device';
 
 export const setSelectedType = (typeId: number) => {
     return(dispatch: Dispatch<DeviceAction>) =>{
@@ -15,8 +14,38 @@ export const setSelectedBrand = (brandId: number) => {
     }
 }
 
-export const setType = (type: ITypes[]) => {
+export const setType = (type: Array<ITypes>) => {
     return(dispatch: Dispatch<DeviceAction>) =>{
      dispatch({type: DeviceActionTypes.SET_TYPE, payload: type})
+    }
+}
+
+export const setBrand = (brand: Array<IBrands>) => {
+    return(dispatch: Dispatch<DeviceAction>) =>{
+     dispatch({type: DeviceActionTypes.SET_BRAND, payload: brand})
+    }
+}
+
+export const setDevice = (device: Array<IDevices>) => {
+    return(dispatch: Dispatch<DeviceAction>) =>{
+     dispatch({type: DeviceActionTypes.SET_DEVICE, payload: device})
+    }
+}
+
+export const setPage = (page: number) => {
+    return(dispatch: Dispatch<DeviceAction>) =>{
+     dispatch({type: DeviceActionTypes.SET_PAGE, payload: page})
+    }
+}
+
+export const setTotalCount = (count: number) => {
+    return(dispatch: Dispatch<DeviceAction>) =>{
+     dispatch({type: DeviceActionTypes.SET_TOTAL_COUNT, payload: count})
+    }
+}
+
+export const setLimit = (limit: number) => {
+    return(dispatch: Dispatch<DeviceAction>) =>{
+     dispatch({type: DeviceActionTypes.SET_LIMIT, payload: limit})
     }
 }

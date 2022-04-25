@@ -1,8 +1,18 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import { createBrand } from '../../http/deviceAPI'
 import { IModalWindowProps } from './IModalWindow'
 
 const ModalWindowCreateBrand: FC<IModalWindowProps> = ({show, onHide}) => {
+ const [value, setValue] = useState<string>('')
+
+    const addBrand = () => {
+        createBrand({name: value}).then(data => {
+            setValue('')
+            onHide()
+        })
+    }
+
   return (
    <Modal show={show} onHide={onHide}>
         <Modal.Header closeButton>
@@ -10,12 +20,14 @@ const ModalWindowCreateBrand: FC<IModalWindowProps> = ({show, onHide}) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Control placeholder={"Введите название брэнда"} />
+            <Form.Control value={value}
+                        onChange={e => setValue(e.target.value)}
+                        placeholder={"Введите название типа"} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="variant-danger" onClick={onHide}>Close</Button>
-          <Button variant="variant-success" onClick={onHide}>Add</Button>
+          <Button variant="variant-success" onClick={addBrand}>Add</Button>
         </Modal.Footer>
       </Modal>
   )

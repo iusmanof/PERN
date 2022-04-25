@@ -21,11 +21,13 @@ export const fetchBrands = async () => {
 };
 
 export const createDevice = async device => {
-  const { data } = await $authHost.post("api/device", device);
+  const { name, price, img, brandId, typeId } = Object.fromEntries(device);
+  const dataNew = { name, price, img, brandId, typeId };
+  const { data } = await $authHost.post("api/device", dataNew);
   return data;
 };
 
-export const fetchDevices = async (typeId, brandId, page, limit = 5) => {
+export const fetchDevices = async (typeId, brandId, page, limit) => {
   const { data } = await $host.get("api/device", {
     params: {
       typeId,
@@ -34,6 +36,7 @@ export const fetchDevices = async (typeId, brandId, page, limit = 5) => {
       limit,
     },
   });
+  console.log(data)
   return data;
 };
 
