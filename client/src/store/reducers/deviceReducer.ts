@@ -9,7 +9,7 @@ const initialState: DeviceState = {
     isSelectedBrandsId: 1,
     page: 1,
     totalCount: 0,
-    limit: 3 
+    limit: 3
 }
 
 export const deviceReducer = (state = initialState, action: DeviceAction): DeviceState => {

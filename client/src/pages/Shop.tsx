@@ -23,12 +23,11 @@ const Shop = () => {
 
 
     useEffect(() => {
-        fetchDevices(isSelectedTypeId , isSelectedBrandsId, page, 2).then(data => {
-          // console.log(data)
-            setDevice(data)
-            // setTotalCount(data.count)
+        fetchDevices(null , null, page, limit).then(data => {
+            setDevice(data.rows)
+            setTotalCount(data.count)
         })
-    }, [page])
+    }, [page, isSelectedBrandsId])
     
   return (
     <div>

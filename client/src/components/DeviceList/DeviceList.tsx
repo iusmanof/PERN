@@ -1,10 +1,13 @@
+import { useEffect } from 'react'
 import { Row } from 'react-bootstrap'
+import { useActions } from '../../store/hooks/authAction'
 import { useTypedSelector } from '../../store/hooks/TypedSelector'
 import DeviceItem from './DeviceItem'
 
 const DeviceList = () => {
   const { devices } = useTypedSelector(state => state.device)
-  
+  const { setType, setBrand, setDevice, setTotalCount } = useActions()
+
   return (
     <div>
       <Row>
